@@ -1,3 +1,7 @@
+# streamlit_app.py
+import os
+os.environ['PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION'] = 'python'
+
 import streamlit as st
 
 # Set page config must be the first Streamlit command
@@ -11,6 +15,7 @@ from streamlit_webrtc import webrtc_streamer, VideoProcessorBase, RTCConfigurati
 import os
 import time
 import subprocess
+
 
 # Load the pre-trained model with error handling
 @st.cache_resource
