@@ -7,4 +7,4 @@ pillow==10.3.0
 scikit-learn==1.5.0
 streamlit-webrtc==0.45.0
 av==10.0.0
-protobuf==4.25.1
+protobuf==3.20.3
