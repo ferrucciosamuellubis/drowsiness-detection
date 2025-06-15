@@ -1,6 +1,6 @@
 streamlit==1.45.1
 opencv-python-headless==4.11.0.86
-tensorflow==2.19.0  # Versi terbaru yang support Python 3.12
+tensorflow==2.16.0
 numpy==1.26.4
 pandas==2.2.1
 pillow==10.3.0
