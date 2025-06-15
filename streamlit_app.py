@@ -39,10 +39,28 @@ score = 0
 
 def play_alarm():
     try:
-        # Using afplay command on macOS
-        subprocess.Popen(['afplay', 'alarm.mp3'])
+        # Try different audio players based on platform
+        import platform
+        system = platform.system()
+        
+        if system == "Darwin":  # macOS
+            subprocess.Popen(['afplay', 'alarm.mp3'])
+        elif system == "Linux":  # Linux (Streamlit Cloud)
+            # Try aplay first, then fallback to other options
+            try:
+                subprocess.Popen(['aplay', 'alarm.mp3'])
+            except FileNotFoundError:
+                try:
+                    subprocess.Popen(['paplay', 'alarm.mp3'])
+                except FileNotFoundError:
+                    # If no audio player available, just show visual alert
+                    st.warning("🚨 DROWSINESS DETECTED! 🚨")
+        elif system == "Windows":  # Windows
+            import winsound
+            winsound.PlaySound('alarm.mp3', winsound.SND_FILENAME)
     except Exception as e:
-        st.error(f"Error playing alarm: {e}")
+        # Fallback to visual alert if audio fails
+        st.warning("🚨 DROWSINESS DETECTED! 🚨")
 
 class VideoProcessor(VideoProcessorBase):
     def __init__(self):
